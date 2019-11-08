@@ -34,6 +34,3 @@ untuk mempersingkat dan memperjelas pemahaman sekaligus cara pakai dari render p
 > **note:**  
 > - nama fungsi default yang diberikan sebagai fungsi `render props` adalah `children`.  
 > - ketika menggunakan nama default, maka kita bisa langsung memanggil fungsi tanpa harus menuliskan `children = {}` (silahkan lihat contoh pada folder *understandingProps*).
-
-# Kesimpulan
-render.props
