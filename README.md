@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Kesimpulan percobaan props
 
-## Available Scripts
+props dapat digunakan untuk menyampaikan data dari komponen ke komponen lain dengan syarat komponen tersebut menyediakan props untuk diisi oleh props yang akan mengirim datanya.
 
-In the project directory, you can run:
+## Permasalahan pada props biasa
 
-### `yarn start`
+untuk mengirim data ke suatu komponen yang berada di **dalam** komponen lain (nested component), komponen pengirim harus memberikan data ke komponen teratas terlebih dahulu, baru data dapat disampaikan ke komponen yang ada dituju.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Perkiraan
+render props harusnya bisa menyelesaikan masalah ini dengan sistem: komponen pengirim bisa mengirim data secara langsung ke komponen yang dituju, dimanapun komponen itu berada.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# Render Props
 
-### `yarn test`
+secara singkat, `render props` adalah suatu props berupa fungsi yang digunakan komponen untuk menentukan apa yang harus dirender.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+nama default dari fungsi yang dibuat bernama `children`.
 
-### `yarn build`
+## Cara Kerja
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+misal, komponen 1 membuat `{this.render.[namaFungsi](parameter)}`. Parameter disini bermakna data yang akan dikirimkan ke komponen lain.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+ketika kita akan memanggil, misal, komponen 2 dan membutuhkan data dari komponen 1, kita bisa memanggil props dari komponen 1 dengan cara memanggil komponen 1, lalu mengisi props yang sudah dibuat.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+karena props yang dibuat merupakan sebuah fungsi, maka kita bisa mereturn komponen 2 di dalam fungsi props komponen 1.
 
-### `yarn eject`
+sehingga, kita bisa memberikan data dari komponen 1 ke komponen 2 melalui props dari komponen 1 sebagai fungsi.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+untuk mempersingkat dan memperjelas pemahaman sekaligus cara pakai dari render props, perhatikan langkah berikut:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. buat props berisi fungsi di komponen 1 yang memiliki parameter berupa data yang akan diberikan
+2. ketika komponen lain, misal komponen 9 membutuhkan data tersebut, panggil komponen 1. lalu, isi propsnya dengan fungsi yang mereturn komponen 9.
+3. pemberian data dari komponen 1 ke komponen 9 dilakukan melalui props dari komponen 9.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> **note:**  
+> - nama fungsi default yang diberikan sebagai fungsi `render props` adalah `children`.  
+> - ketika menggunakan nama default, maka kita bisa langsung memanggil fungsi tanpa harus menuliskan `children = {}` (silahkan lihat contoh pada folder *understandingProps*).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Kesimpulan
+render.props

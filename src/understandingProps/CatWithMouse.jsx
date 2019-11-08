@@ -1,5 +1,4 @@
 import React from "react";
-import Cat from "./Cat";
 
 export default class CatWithMouse extends React.Component {
   constructor(props) {
@@ -18,15 +17,8 @@ export default class CatWithMouse extends React.Component {
   render() {
     return (
       <div onMouseMove={this.handleMouseMove}>
-        <Cat mouse={this.state} text={this.state.text} />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <p>halo</p>
+        {this.props.children(this.state)}
       </div>
     );
   }

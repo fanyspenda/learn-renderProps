@@ -11,7 +11,9 @@ class Cat extends React.Component {
           style={{ position: "relative", left: mouse.x, top: mouse.y }}
           alt="zero"
         />
-        <p>{this.props.text}</p>
+        <br />
+        <br />
+        <br />
       </div>
     );
   }
